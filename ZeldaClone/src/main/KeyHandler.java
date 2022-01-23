@@ -15,7 +15,11 @@ public class KeyHandler implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+		int code = e.getKeyCode();
+		
+		if (code == KeyEvent.VK_W) {
+			upPressed = true;
+		}
 		
 	}
 
