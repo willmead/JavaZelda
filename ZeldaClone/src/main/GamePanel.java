@@ -4,22 +4,22 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPanel;
 
 import entity.Player;
-import object.SuperObject;
+import item.Item;
 import tile.TileManager;
 
-public class GamePanel extends JPanel implements Runnable{
+public class GamePanel extends JPanel implements Runnable {
 	
 	private static final long serialVersionUID = 1L;
-	
 	
 	// SCREEN SETTINGS
 	final int originalTileSize = 16; // 16x16 Tile
 	final int scale = 3;
-	
 	public final int tileSize = originalTileSize * scale; // 48x48 Tile
 	public final int maxScreenCol = 16;
 	public final int maxScreenRow = 12;
@@ -28,35 +28,42 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	// FPS
 	int FPS = 60;
-	
+	double drawInterval = 1000000000 / FPS;
+	double delta = 0;
+
 	// WORLD SETTINGS
 	public final int maxWorldCol = 50;
 	public final int maxWorldRow = 50;
-	public final int worldWidth = tileSize * maxWorldCol;
-	public final int worldHeight = tileSize * maxWorldRow;
 	
-	TileManager tileM = new TileManager(this);
-	KeyHandler keyH = new KeyHandler();
+	// MANAGERS
+	TileManager tileManager = new TileManager(this);
+	KeyHandler keyHandler = new KeyHandler();
+	public SoundManager musicManager = new SoundManager();
+	public SoundManager soundEffectManager = new SoundManager();
+	public CollisionChecker collisionChecker = new CollisionChecker(this);
+	public ItemManager itemManager = new ItemManager(this);
+	public UI ui = new UI(this);
+	
+	// GAME THREAD
 	Thread gameThread;
-	public CollisionChecker cChecker = new CollisionChecker(this);
-	public AssetSetter aSetter = new AssetSetter(this);
-	public Player player = new Player(this, keyH);
-	public SuperObject obj[] = new SuperObject[10];
-	
-	int playerX = 100;
-	int playerY = 100;
-	int playerSpeed = 4;
+
+	// PLAYER AND ITEMS
+	public Player player = new Player(this, keyHandler);
+	public List<Item> items = new ArrayList<Item>();
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
-		this.addKeyListener(keyH);
+		this.addKeyListener(keyHandler);
 		this.setFocusable(true);
 	}
 	
 	public void setupGame() {
-		aSetter.setObject();
+		itemManager.setItems();
+		musicManager.setFile(0);
+		musicManager.play();
+		musicManager.loop();
 	}
 	
 	public void startGameThread() {
@@ -67,13 +74,10 @@ public class GamePanel extends JPanel implements Runnable{
 	@Override
 	public void run() {
 		
-		double drawInterval = 1000000000 / FPS;
-		double delta = 0;
 		long lastTime = System.nanoTime();
 		long currentTime;
 		
 		while(gameThread != null) {
-			
 			currentTime = System.nanoTime();
 			delta += (currentTime - lastTime) / drawInterval;
 			lastTime = currentTime;
@@ -92,17 +96,13 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
 		Graphics2D g2 = (Graphics2D)g;
-		tileM.draw(g2);
-		
-		for (int i = 0; i < obj.length; i++) {
-			if (obj[i] != null) {
-				obj[i].draw(g2, this);
-			}
-		}
-		
+
+		tileManager.draw(g2);		
+		itemManager.draw(g2);
 		player.draw(g2);
+		ui.draw(g2);
+		
 		g2.dispose();
 	}
 	

@@ -13,12 +13,14 @@ public class Main {
 		
 		GamePanel gamePanel = new GamePanel();
 		window.add(gamePanel);
-		
 		window.pack();
-		window.setVisible(true);
 		
 		gamePanel.setupGame();
 		gamePanel.startGameThread();
+		
+		window.setVisible(true);
+		
+
 	}
 
 }
