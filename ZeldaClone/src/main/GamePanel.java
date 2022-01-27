@@ -38,7 +38,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int maxWorldRow = 50;
 	
 	// MANAGERS
-	TileManager tileManager = new TileManager(this);
+	public TileManager tileManager = new TileManager(this);
 	KeyHandler keyHandler = new KeyHandler();
 	public SoundManager musicManager = new SoundManager();
 	public SoundManager soundEffectManager = new SoundManager();
@@ -62,12 +62,13 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void setupGame() {
-//		itemManager.loadDemoItems();
-//		tileManager.loadDemoTileset();
-//		tileManager.loadMap("/maps/map01.txt");
-//		musicManager.loadDemoSounds();
-//		musicManager.play("soundtrack");
-//		musicManager.loop();
+		itemManager.loadDemoItems();
+		tileManager.loadDemoTileset();
+		tileManager.loadMap("/maps/map01.txt");
+		soundEffectManager.loadDemoSounds();
+		musicManager.loadDemoSounds();
+		musicManager.play("soundtrack");
+		musicManager.loop();
 	}
 	
 	public void startGameThread() {
@@ -95,6 +96,7 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void update() {
+		ui.update();
 		player.update();
 	}
 	

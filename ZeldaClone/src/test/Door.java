@@ -1,9 +1,10 @@
-package item;
+package test;
 
 import java.awt.Color;
 import java.awt.Font;
 
 import entity.Player;
+import item.Item;
 import main.GamePanel;
 import main.UtilityTool;
 
@@ -32,8 +33,9 @@ public class Door extends Item {
 					gp.screenWidth / 2, 
 					gp.screenHeight / 2, 
 					3);
-			visible = false;
-			collision = false;
+			gp.itemManager.removeItem(this);
+//			visible = false;
+//			collision = false;
 			player.keys--;
 		} else {
 			gp.ui.displayMessage("You need a key!", 

@@ -79,7 +79,7 @@ public class Player extends Entity {
 				moving = true;
 				collisionOn = gp.collisionChecker.checkTile(this);
 				Item collisionItem = gp.collisionChecker.checkObject(this, true);
-				if (collisionItem != null && collisionItem.visible) {
+				if (collisionItem != null) {
 					collisionItem.interact(this);
 				}
 				

@@ -1,9 +1,10 @@
-package item;
+package test;
 
 import java.awt.Color;
 import java.awt.Font;
 
 import entity.Player;
+import item.Item;
 import main.GamePanel;
 import main.UtilityTool;
 

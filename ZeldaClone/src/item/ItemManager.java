@@ -5,11 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.GamePanel;
+import test.Boots;
+import test.Chest;
+import test.Door;
+import test.Key;
 
 public class ItemManager {
 	
 	GamePanel gp;
 	public List<Item> items;
+	public List<Item> toRemove = new ArrayList<Item>();
 	
 	public ItemManager(GamePanel gp) {
 		this.gp = gp;
@@ -24,6 +29,13 @@ public class ItemManager {
 		for (Item item : items) {
 			item.draw(g2, gp);
 		}
+		
+		items.removeAll(toRemove);
+		toRemove.clear();
+	}
+	
+	public void removeItem(Item item) {
+		toRemove.add(item);
 	}
 	
 	public void loadDemoItems() {
