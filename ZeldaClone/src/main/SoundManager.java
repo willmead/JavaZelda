@@ -11,9 +11,13 @@ import javax.sound.sampled.Clip;
 public class SoundManager {
 	
 	Clip clip;
-	Map<String, URL> sounds = new HashMap<String, URL>();
+	Map<String, URL> sounds;
 
 	public SoundManager() {
+		 sounds = new HashMap<String, URL>();
+	}
+	
+	public void loadDemoSounds() {
 		sounds.put("soundtrack", getClass().getResource("/sound/BlueBoyAdventure.wav"));
 		sounds.put("coin", getClass().getResource("/sound/coin.wav"));
 		sounds.put("powerup", getClass().getResource("/sound/powerup.wav"));

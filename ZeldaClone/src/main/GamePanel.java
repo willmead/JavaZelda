@@ -13,6 +13,7 @@ import entity.Player;
 import item.Item;
 import item.ItemManager;
 import tile.TileManager;
+import ui.UI;
 
 public class GamePanel extends JPanel implements Runnable {
 	
@@ -41,12 +42,12 @@ public class GamePanel extends JPanel implements Runnable {
 	KeyHandler keyHandler = new KeyHandler();
 	public SoundManager musicManager = new SoundManager();
 	public SoundManager soundEffectManager = new SoundManager();
-	public CollisionChecker collisionChecker = new CollisionChecker(this);
+	public CollisionManager collisionChecker = new CollisionManager(this);
 	public ItemManager itemManager = new ItemManager(this);
 	public UI ui = new UI(this);
 	
 	// GAME THREAD
-	Thread gameThread;
+	public Thread gameThread;
 
 	// PLAYER AND ITEMS
 	public Player player = new Player(this, keyHandler);
@@ -61,9 +62,12 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void setupGame() {
-		itemManager.setItems();
-		musicManager.play("soundtrack");
-		musicManager.loop();
+//		itemManager.loadDemoItems();
+//		tileManager.loadDemoTileset();
+//		tileManager.loadMap("/maps/map01.txt");
+//		musicManager.loadDemoSounds();
+//		musicManager.play("soundtrack");
+//		musicManager.loop();
 	}
 	
 	public void startGameThread() {

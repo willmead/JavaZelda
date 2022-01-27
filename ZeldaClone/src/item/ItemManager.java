@@ -16,7 +16,7 @@ public class ItemManager {
 		items = new ArrayList<Item>();
 	}
 	
-	public void add(Item item) {
+	public void addItem(Item item) {
 		items.add(item);
 	}
 	
@@ -26,7 +26,7 @@ public class ItemManager {
 		}
 	}
 	
-	public void setItems() {
+	public void loadDemoItems() {
 		Key key1 = new Key(gp);
 		key1.worldX = 23 * gp.tileSize;
 		key1.worldY = 7 * gp.tileSize;

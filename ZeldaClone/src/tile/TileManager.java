@@ -19,12 +19,8 @@ public class TileManager {
 	
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
-		
 		tileset = new ArrayList<Tile>();
-		worldMap = new ArrayList<ArrayList<Tile>>();
-		
-		loadTileset();
-		loadMap("/maps/map01.txt");		
+		worldMap = new ArrayList<ArrayList<Tile>>();	
 	}
 	
 	public void addTile(int index, String imageName, boolean collision) {
@@ -32,7 +28,16 @@ public class TileManager {
 		tileset.add(index, new Tile(image, collision));
 	}
 	
-	public void loadTileset() {
+	public Tile getTile(int row, int col) {
+		if (row >= 0 && row <= worldMap.size()) {
+			if (col >= 0 && col <= worldMap.get(row).size()) {
+				return worldMap.get(row).get(col);
+			}
+		}
+		return null;
+	}
+	
+	public void loadDemoTileset() {
 		addTile(0, "grass00", false);
 		addTile(1, "grass00", false);
 		addTile(2, "grass00", false);

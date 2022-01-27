@@ -6,13 +6,13 @@ import entity.Entity;
 import item.Item;
 import tile.Tile;
 
-public class CollisionChecker {
+public class CollisionManager {
 
 	GamePanel gp;
 	Rectangle entityRect;
 	Rectangle itemRect;
 	
-	public CollisionChecker(GamePanel gp) {
+	public CollisionManager(GamePanel gp) {
 		this.gp = gp;
 	}
 	
@@ -33,26 +33,26 @@ public class CollisionChecker {
 		switch (entity.direction) {
 		case "up":
 			entityTopRow = (entityTopWorldY - entity.speed) / gp.tileSize; 
-			tile1 = gp.tileManager.worldMap.get(entityTopRow).get(entityLeftCol);
-			tile2 = gp.tileManager.worldMap.get(entityTopRow).get(entityRightCol);
+			tile1 = gp.tileManager.getTile(entityTopRow, entityLeftCol);
+			tile2 = gp.tileManager.getTile(entityTopRow, entityRightCol);
 			break;
 		case "down":
 			entityBottomRow = (entityBottomWorldY + entity.speed) / gp.tileSize; 
-			tile1 = gp.tileManager.worldMap.get(entityBottomRow).get(entityLeftCol);
-			tile2 = gp.tileManager.worldMap.get(entityBottomRow).get(entityRightCol);
+			tile1 = gp.tileManager.getTile(entityBottomRow, entityLeftCol);
+			tile2 = gp.tileManager.getTile(entityBottomRow, entityRightCol);
 			break;
 		case "left":
 			entityLeftCol = (entityLeftWorldX - entity.speed) / gp.tileSize; 
-			tile1 = gp.tileManager.worldMap.get(entityTopRow).get(entityLeftCol);
-			tile2 = gp.tileManager.worldMap.get(entityBottomRow).get(entityLeftCol);
+			tile1 = gp.tileManager.getTile(entityTopRow, entityLeftCol);
+			tile2 = gp.tileManager.getTile(entityBottomRow, entityLeftCol);
 			break;
 		case "right":
 			entityRightCol = (entityRightWorldX + entity.speed) / gp.tileSize; 
-			tile1 = gp.tileManager.worldMap.get(entityTopRow).get(entityRightCol);
-			tile2 = gp.tileManager.worldMap.get(entityBottomRow).get(entityRightCol);
+			tile1 = gp.tileManager.getTile(entityTopRow, entityRightCol);
+			tile2 = gp.tileManager.getTile(entityBottomRow, entityRightCol);
 			break;
 		}
-		if (tile1.collision || tile2.collision) {
+		if (tile1 != null && tile2 != null && (tile1.collision || tile2.collision)) {
 			return true;
 		}
 		return false;
