@@ -1,10 +1,8 @@
 package item;
 
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
+import entity.Player;
 import main.GamePanel;
+import main.UtilityTool;
 
 public class Boots extends Item{
 	
@@ -14,11 +12,17 @@ public class Boots extends Item{
 		this.gp = gp;
 
 		name = "Boots";
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/objects/boots.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		pickupable = true;
+		
+		image = UtilityTool.loadImage("items", "boots");
+	}
+	
+	public void interact(Player player) {
+		gp.soundEffectManager.play("powerup");
+		player.speed += 2;
+		gp.ui.showMessage("Speed Up!");
+		visible = false;
+		collision = false;
 	}
 
 }

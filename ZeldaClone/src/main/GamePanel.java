@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import entity.Player;
 import item.Item;
+import item.ItemManager;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -61,8 +62,7 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	public void setupGame() {
 		itemManager.setItems();
-		musicManager.setFile(0);
-		musicManager.play();
+		musicManager.play("soundtrack");
 		musicManager.loop();
 	}
 	

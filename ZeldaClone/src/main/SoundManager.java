@@ -1,6 +1,8 @@
 package main;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -9,27 +11,24 @@ import javax.sound.sampled.Clip;
 public class SoundManager {
 	
 	Clip clip;
-	URL soundURL[] = new URL[30];
+	Map<String, URL> sounds = new HashMap<String, URL>();
 
 	public SoundManager() {
-		soundURL[0] = getClass().getResource("/sound/BlueBoyAdventure.wav");
-		soundURL[1] = getClass().getResource("/sound/coin.wav");
-		soundURL[2] = getClass().getResource("/sound/powerup.wav");
-		soundURL[3] = getClass().getResource("/sound/unlock.wav");
-		soundURL[4] = getClass().getResource("/sound/fanfare.wav");
+		sounds.put("soundtrack", getClass().getResource("/sound/BlueBoyAdventure.wav"));
+		sounds.put("coin", getClass().getResource("/sound/coin.wav"));
+		sounds.put("powerup", getClass().getResource("/sound/powerup.wav"));
+		sounds.put("unlock", getClass().getResource("/sound/unlock.wav"));
+		sounds.put("fanfare", getClass().getResource("/sound/fanfare.wav"));
 	}
 	
-	public void setFile(int i) {
+	public void play(String soundName) {
 		try {
-			AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
+			AudioInputStream ais = AudioSystem.getAudioInputStream(sounds.get(soundName));
 			clip = AudioSystem.getClip();
 			clip.open(ais);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void play() {
 		clip.start();
 	}
 	
@@ -40,6 +39,5 @@ public class SoundManager {
 	public void stop() {
 		clip.stop();
 	}
-	
 
 }

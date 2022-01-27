@@ -65,9 +65,8 @@ public class UI {
 			g2.setFont(arial_40);
 			g2.setColor(Color.white);
 			g2.drawImage(keyImage, gp.tileSize / 2, gp.tileSize / 2, gp.tileSize, gp.tileSize, null);
-			g2.drawString("x " + gp.player.hasKey, 75, 60);
+			g2.drawString("x " + gp.player.keys, 75, 60);
 			
-			// MESSAGE
 			if (messageOn) {
 				g2.setFont(g2.getFont().deriveFont(30F));
 				g2.drawString(message, gp.tileSize / 2, gp.tileSize * 5);

@@ -1,14 +1,10 @@
-package main;
+package item;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import item.Boots;
-import item.Chest;
-import item.Door;
-import item.Item;
-import item.Key;
+import main.GamePanel;
 
 public class ItemManager {
 	
@@ -18,6 +14,16 @@ public class ItemManager {
 	public ItemManager(GamePanel gp) {
 		this.gp = gp;
 		items = new ArrayList<Item>();
+	}
+	
+	public void add(Item item) {
+		items.add(item);
+	}
+	
+	public void draw(Graphics2D g2) {
+		for (Item item : items) {
+			item.draw(g2, gp);
+		}
 	}
 	
 	public void setItems() {
@@ -64,9 +70,5 @@ public class ItemManager {
 		items.add(boots);
 	}
 	
-	public void draw(Graphics2D g2) {
-		for (Item item : items) {
-			item.draw(g2, gp);
-		}
-	}
+
 }

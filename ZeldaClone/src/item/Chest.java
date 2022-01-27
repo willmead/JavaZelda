@@ -1,10 +1,8 @@
 package item;
 
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
+import entity.Player;
 import main.GamePanel;
+import main.UtilityTool;
 
 public class Chest extends Item{
 	
@@ -14,13 +12,15 @@ public class Chest extends Item{
 		this.gp = gp;
 
 		name = "Chest";
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/objects/chest.png"));
-			uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		collision = true;
+		
+		image = UtilityTool.loadImage("items", "chest");
+	}
+	
+	public void interact(Player player) {
+		gp.ui.gameFinished = true;
+		gp.musicManager.stop();
+		gp.soundEffectManager.play("fanfare");
 	}
 
 }

@@ -7,14 +7,6 @@ public class KeyHandler implements KeyListener {
 	
 	public boolean upPressed, downPressed, leftPressed, rightPressed;
 	
-	public boolean checkDrawTime = false;
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
@@ -31,12 +23,6 @@ public class KeyHandler implements KeyListener {
 		else if (code == KeyEvent.VK_D) {
 			rightPressed = true;
 		}
-		
-		// DEBUG
-		if (code == KeyEvent.VK_T) {
-			checkDrawTime = !checkDrawTime;
-		}
-		
 	}
 
 	@Override
@@ -56,5 +42,8 @@ public class KeyHandler implements KeyListener {
 			rightPressed = false;
 		}
 	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {}
 
 }

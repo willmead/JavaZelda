@@ -1,10 +1,8 @@
 package item;
 
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
+import entity.Player;
 import main.GamePanel;
+import main.UtilityTool;
 
 public class Door extends Item{
 	
@@ -13,13 +11,21 @@ public class Door extends Item{
 	public Door(GamePanel gp) {
 		this.gp = gp;
 		name = "Door";
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/objects/door.png"));
-			uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		collision = true;
+		
+		image = UtilityTool.loadImage("items", "door");
+	}
+	
+	public void interact(Player player) {
+		if (player.keys > 0) {
+			gp.soundEffectManager.play("unlock");
+			gp.ui.showMessage("You opened the door!");
+			visible = false;
+			collision = false;
+			player.keys--;
+		} else {
+			gp.ui.showMessage("You need a key!");
+		}
 	}
 
 }
