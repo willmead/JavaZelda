@@ -21,7 +21,7 @@ public class Door extends Item {
 		name = "Door";
 		collision = true;
 		
-		image = UtilityTool.loadImage("items", "door");
+		image = UtilityTool.loadImage("items", "door", 48, 48);
 	}
 	
 	public void interact(Player player) {
@@ -34,8 +34,6 @@ public class Door extends Item {
 					gp.screenHeight / 2, 
 					3);
 			gp.itemManager.removeItem(this);
-//			visible = false;
-//			collision = false;
 			player.keys--;
 		} else {
 			gp.ui.displayMessage("You need a key!", 

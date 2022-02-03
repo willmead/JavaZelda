@@ -19,7 +19,7 @@ public class Key extends Item{
 	public Key(GamePanel gp) {
 		this.gp = gp;
 		name = "Key";
-		image = UtilityTool.loadImage("items", "key");
+		image = UtilityTool.loadImage("items", "key", 48, 48);
 	}
 	
 	public void interact(Player player) {

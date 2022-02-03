@@ -22,7 +22,7 @@ public class Chest extends Item{
 		name = "Chest";
 		collision = true;
 		
-		image = UtilityTool.loadImage("items", "chest");
+		image = UtilityTool.loadImage("items", "chest", 48, 48);
 	}
 	
 	public void interact(Player player) {

@@ -10,4 +10,8 @@ public class Tile {
 		this.image = image;
 		this.collision = collision;
 	}
+	
+	public Tile() {
+		
+	}
 }

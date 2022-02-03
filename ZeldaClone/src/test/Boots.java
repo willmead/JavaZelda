@@ -19,7 +19,7 @@ public class Boots extends Item{
 	public Boots(GamePanel gp) {
 		this.gp = gp;
 		name = "Boots";
-		image = UtilityTool.loadImage("items", "boots");
+		image = UtilityTool.loadImage("items", "boots", 48, 48);
 	}
 	
 	public void interact(Player player) {

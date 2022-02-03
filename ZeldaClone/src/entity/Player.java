@@ -45,20 +45,20 @@ public class Player extends Entity {
 		sprites = new HashMap<String, List<BufferedImage>>();
 		
 		List<BufferedImage> up = new ArrayList<BufferedImage>();
-		up.add(UtilityTool.loadImage("player", "boy_up_1"));
-		up.add(UtilityTool.loadImage("player", "boy_up_2"));
+		up.add(UtilityTool.loadImage("player", "boy_up_1", gp.tileSize, gp.tileSize));
+		up.add(UtilityTool.loadImage("player", "boy_up_2", gp.tileSize, gp.tileSize));
 		
 		List<BufferedImage> down = new ArrayList<BufferedImage>();
-		down.add(UtilityTool.loadImage("player", "boy_down_1"));
-		down.add(UtilityTool.loadImage("player", "boy_down_2"));
+		down.add(UtilityTool.loadImage("player", "boy_down_1", gp.tileSize, gp.tileSize));
+		down.add(UtilityTool.loadImage("player", "boy_down_2", gp.tileSize, gp.tileSize));
 
 		List<BufferedImage> left = new ArrayList<BufferedImage>();
-		left.add(UtilityTool.loadImage("player", "boy_left_1"));
-		left.add(UtilityTool.loadImage("player", "boy_left_2"));
+		left.add(UtilityTool.loadImage("player", "boy_left_1", gp.tileSize, gp.tileSize));
+		left.add(UtilityTool.loadImage("player", "boy_left_2", gp.tileSize, gp.tileSize));
 		
 		List<BufferedImage> right = new ArrayList<BufferedImage>();
-		right.add(UtilityTool.loadImage("player", "boy_right_1"));
-		right.add(UtilityTool.loadImage("player", "boy_right_2"));
+		right.add(UtilityTool.loadImage("player", "boy_right_1", gp.tileSize, gp.tileSize));
+		right.add(UtilityTool.loadImage("player", "boy_right_2", gp.tileSize, gp.tileSize));
 
 		sprites.put("up", up);
 		sprites.put("down", down);
