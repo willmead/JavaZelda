@@ -50,7 +50,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Thread gameThread;
 
 	// PLAYER AND ITEMS
-	public Player player = new Player(this, keyHandler);
+	public Player player;
 	public List<Item> items = new ArrayList<Item>();
 	
 	public GamePanel() {
@@ -62,6 +62,7 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void setupGame() {
+		player = new Player(this, keyHandler);
 		itemManager.loadDemoItems();
 		tileManager.loadDemoTileset();
 		tileManager.loadMap("/maps/map01.txt");

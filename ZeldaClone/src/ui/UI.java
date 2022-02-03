@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -34,6 +35,20 @@ public class UI {
 		toAdd.add(message);
 	}
 	
+	public void drawSubWindow(Graphics2D g2) {
+		int x = gp.tileSize / 2;
+		int y = gp.screenHeight - gp.tileSize * 9 / 2;
+		int width = gp.screenWidth - gp.tileSize;
+		int height = gp.screenHeight / 3;
+				
+		g2.setColor(Color.black);
+		g2.fillRoundRect(x, y, width, height, 35, 35);
+		
+		g2.setColor(Color.white);
+		g2.setStroke(new BasicStroke(5));
+		g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+	}
+		
 	public void update() {
 		messages.addAll(toAdd);
 		toAdd.clear();
@@ -43,16 +58,20 @@ public class UI {
 
 	public void draw(Graphics2D g2) {
 		
+		int x = (gp.tileSize / 2) + gp.tileSize;
+		int y = (gp.screenHeight - gp.tileSize * 9 / 2) + gp.tileSize;
+		
 		fontMetrics = g2.getFontMetrics();
 		
 		for (Message message : messages) {
-			g2.setFont(arial_40);
+			drawSubWindow(g2);
+			g2.setFont(message.font);
 			g2.setColor(message.color);
 			
-			Rectangle2D stringBounds = fontMetrics.getStringBounds(message.text, g2);
-			double x = message.x - (stringBounds.getWidth() / 2d);
-			double y = message.y - (stringBounds.getHeight() / 2d);
-			g2.drawString(message.text, (int)x, (int)y);
+			for (String line : message.text.split("\n")) {
+				g2.drawString(line, x, y);
+				y += 40;
+			}
 			
 			long currentTime = System.nanoTime();
 			if (((currentTime - message.startTime) / 1000000000) > message.seconds) {

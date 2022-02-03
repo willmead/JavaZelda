@@ -24,9 +24,9 @@ public class Key extends Item{
 	
 	public void interact(Player player) {
 		gp.soundEffectManager.play("coin");
-		gp.ui.displayMessage("You got a key!", 
+		gp.ui.displayMessage("You got a key! Maybe this will unlock certain \ndoors around the island, try it out!", 
 				Color.white, 
-				new Font("Arial", Font.BOLD, 80), 
+				new Font("Arial", Font.PLAIN, 30), 
 				gp.screenWidth / 2, 
 				gp.screenHeight / 2, 
 				3);
