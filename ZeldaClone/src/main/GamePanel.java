@@ -47,7 +47,12 @@ public class GamePanel extends JPanel implements Runnable {
 	public Thread gameThread;
 
 	// PLAYER AND ITEMS
+<<<<<<< HEAD
 	public Player player = new Player(this, keyHandler);
+=======
+	public Player player;
+	public List<Item> items = new ArrayList<Item>();
+>>>>>>> branch 'master' of https://github.com/willmead/JavaZelda.git
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -58,6 +63,7 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void setupGame() {
+		player = new Player(this, keyHandler);
 		itemManager.loadDemoItems();
 		tileManager.loadDemoTileset();
 		tileManager.loadDemoMap("/maps/map01.txt");
